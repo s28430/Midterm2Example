@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Midterm2Ex.Context;
+using Midterm2Ex.Repositories;
+using Midterm2Ex.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers().AddXmlSerializerFormatters();
 builder.Services.AddDbContext<SongsDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IArtistRepository, ArtistRepository>();
+builder.Services.AddScoped<IArtistService, ArtistService>();
 
 var app = builder.Build();
 

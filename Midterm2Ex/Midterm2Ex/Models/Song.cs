@@ -9,5 +9,5 @@ public class Song
     public int? IdAlbum { get; set; }
     public Album? Album { get; set; }
 
-    public ICollection<SongArtist> SongArtists { get; set; }
+    public ICollection<SongArtist> SongArtists { get; set; } = [];
 }
