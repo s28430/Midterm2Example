@@ -24,4 +24,19 @@ public class ArtistRepository(SongsDbContext dbContext) : IArtistRepository
             .Select(sa => sa.Song)
             .ToListAsync(cancellationToken);
     }
+
+    public async Task<int> AddArtistAsync(string firstName, string lastName, string? pseudonym,
+        CancellationToken cancellationToken)
+    {
+        var artist = new Artist
+        {
+            FirstName = firstName,
+            LastName = lastName,
+            Pseudonym = pseudonym
+        };
+
+        await _dbContext.Artists.AddAsync(artist, cancellationToken);
+        await _dbContext.SaveChangesAsync(cancellationToken);
+        return artist.IdArtist;
+    }
 }

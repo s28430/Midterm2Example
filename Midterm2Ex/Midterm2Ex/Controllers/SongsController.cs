@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Midterm2Ex.Dtos;
 using Midterm2Ex.Exceptions;
 using Midterm2Ex.Services;
 
@@ -20,6 +21,19 @@ public class SongsController(IArtistService artistService) : ControllerBase
         catch (ArtistNotFoundException e)
         {
             return NotFound(e.Message);
+        }
+    }
+
+    [HttpPost("/artists/new")]
+    public async Task<IActionResult> AddArtist(AddArtistRequestDto data, CancellationToken cancellationToken)
+    {
+        try
+        {
+            return Ok(await _artistService.AddArtistAsync(data, cancellationToken));
+        }
+        catch (Exception e)
+        {
+            return Conflict(e.Message);
         }
     }
 }

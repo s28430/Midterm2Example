@@ -15,6 +15,7 @@ builder.Services.AddDbContext<SongsDbContext>(options =>
 
 builder.Services.AddScoped<IArtistRepository, ArtistRepository>();
 builder.Services.AddScoped<IArtistService, ArtistService>();
+builder.Services.AddScoped<ISongRepository, SongRepository>();
 
 var app = builder.Build();
 
