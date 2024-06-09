@@ -1,0 +1,6 @@
+@GagoExampleTest_HostAddress = http://localhost:5173
+
+GET {{GagoExampleTest_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
