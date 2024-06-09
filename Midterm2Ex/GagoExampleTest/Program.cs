@@ -1,4 +1,6 @@
 using GagoExampleTest.Context;
+using GagoExampleTest.Repositories;
+using GagoExampleTest.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers().AddXmlSerializerFormatters();
 builder.Services.AddDbContext<BoatsDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
 
 
 var app = builder.Build();
